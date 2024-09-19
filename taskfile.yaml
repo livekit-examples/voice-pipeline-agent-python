@@ -4,6 +4,7 @@ dotenv: [".env.local"]
 
 tasks:
   post_create_sandbox:
+    silent: true
     desc: "Runs after this template is instantiated as a Sandbox or Bootstrap"
     cmds:
       - echo -e "To setup and run the agent:\n"
