@@ -62,10 +62,13 @@ async def entrypoint(ctx: JobContext):
     await assistant.say("Hey, how can I help you today?", allow_interruptions=True)
 
 
+# The agent can be configured to only accept jobs from specific rooms
 async def dispatch(ctx: JobRequest):
+    # In this case, when running in a sandbox we only want to join rooms
+    # associated with that sandbox.
     if sandbox is not None:
-        print(ctx.room.name)
-        if ctx.room.name.startswith("stateless"):
+        hash = ctx.room.name.split('-')[-1]
+        if ctx.room.name.startswith(f"sbx-{hash}"):
             return await ctx.accept()
         return await ctx.reject()
     return await ctx.accept()
