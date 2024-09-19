@@ -67,7 +67,7 @@ async def dispatch(ctx: JobRequest):
     # In this case, when running in a sandbox we only want to join rooms
     # associated with that sandbox.
     if sandbox is not None:
-        hash = ctx.room.name.split('-')[1]
+        hash = sandbox.split('-')[-1]
         if ctx.room.name.startswith(f"sbx-{hash}"):
             return await ctx.accept()
         return await ctx.reject()
