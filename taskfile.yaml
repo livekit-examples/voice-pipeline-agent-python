@@ -6,15 +6,15 @@ tasks:
   post_create:
     desc: "Runs after this template is instantiated as a Sandbox or Bootstrap"
     cmds:
-      - echo -e "To setup and run the agent:\n"
-      - echo -e "    cd {{.ROOT_DIR}}"
-      - echo -e "    python3 -m venv venv"
+      - echo -e "To setup and run the agent:\r\n"
+      - echo -e "    cd {{.ROOT_DIR}}\r"
+      - echo -e "    python3 -m venv venv\r"
       - platforms: [darwin, linux]
-        cmd: echo -e "    source venv/bin/activate"
+        cmd: echo -e "    source venv/bin/activate\r"
       - platforms: [windows]
-        cmd: echo -e "    powershell venv/Scripts/Activate.ps1"
-      - echo -e "    python3 -m pip install -r requirements.txt"
-      - echo -e "    python3 agent.py start\n"
+        cmd: echo -e "    powershell venv/Scripts/Activate.ps1\r"
+      - echo -e "    python3 -m pip install -r requirements.txt\r"
+      - echo -e "    python3 agent.py start\r\n"
 
   install:
     desc: "Bootstrap application for local development"
