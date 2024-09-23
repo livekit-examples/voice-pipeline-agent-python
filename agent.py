@@ -63,7 +63,7 @@ async def entrypoint(ctx: JobContext):
 
 
 # The agent can be configured to only accept jobs from specific rooms
-async def dispatch(ctx: JobRequest):
+async def request(ctx: JobRequest):
     # In this case, when running in a sandbox we only want to join rooms
     # associated with that sandbox.
     if sandbox is not None:
@@ -79,6 +79,6 @@ if __name__ == "__main__":
         WorkerOptions(
             entrypoint_fnc=entrypoint,
             prewarm_fnc=prewarm,
-            request_fnc=dispatch,
+            request_fnc=request,
         ),
     )
