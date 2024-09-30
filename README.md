@@ -21,13 +21,21 @@ A basic example of a voice agent using LiveKit and Python.
 Clone the repository and install dependencies to a virtual environment:
 
 ```console
-cd pipeline-voice-agent-python
+cd voice-pipeline-agent-python
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Set up the environment by copying `.env.example` to `.env.local` and filling in the required values, or by using the LiveKit CLI:
+Set up the environment by copying `.env.example` to `.env.local` and filling in the required values:
+
+- `LIVEKIT_URL`
+- `LIVEKIT_API_KEY`
+- `LIVEKIT_API_SECRET`
+- `OPENAI_API_KEY`
+- `DEEPGRAM_API_KEY`
+
+You can also do this automatically using the LiveKit CLI:
 
 ```console
 lk app env
