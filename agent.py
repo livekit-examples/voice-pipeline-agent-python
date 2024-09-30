@@ -12,7 +12,7 @@ from livekit.agents import (
     llm,
 )
 from livekit.agents.voice_assistant import VoiceAssistant
-from livekit.plugins import openai, silero
+from livekit.plugins import openai, deepgram, silero
 
 
 load_dotenv(dotenv_path=".env.local")
@@ -50,8 +50,8 @@ async def entrypoint(ctx: JobContext):
     # https://docs.livekit.io/agents/plugins
     assistant = VoiceAssistant(
         vad=ctx.proc.userdata["vad"],
-        stt=openai.STT(model="whisper-1"),
-        llm=openai.LLM(),
+        stt=deepgram.STT(),
+        llm=openai.LLM(model="gpt-4o-mini"),
         tts=openai.TTS(),
         chat_ctx=initial_ctx,
     )
