@@ -13,8 +13,8 @@ tasks:
         cmd: echo -e "    source venv/bin/activate\r"
       - platforms: [windows]
         cmd: echo -e "    powershell venv/Scripts/Activate.ps1\r"
-      - echo -e "    python3 -m pip install -r requirements.txt\r"
-      - echo -e "    python3 agent.py start\r\n"
+      - echo -e "    pip install -r requirements.txt\r"
+      - echo -e "    python3 agent.py dev\r\n"
 
   install:
     desc: "Bootstrap application for local development"
@@ -24,7 +24,7 @@ tasks:
         cmd: "source venv/bin/activate"
       - platforms: [windows]
         cmd: "powershell venv/Scripts/Activate.ps1"
-      - "python3 -m pip install -r requirements.txt"
+      - "pip install -r requirements.txt"
 
   dev:
     interactive: true
@@ -33,4 +33,4 @@ tasks:
         cmd: "source venv/bin/activate"
       - platforms: [windows]
         cmd: "powershell venv/Scripts/Activate.ps1"
-      - "python3 agent.py start"
+      - "python3 agent.py dev"
