@@ -1,4 +1,3 @@
-import os
 import logging
 
 from dotenv import load_dotenv
@@ -6,18 +5,16 @@ from livekit.agents import (
     AutoSubscribe,
     JobContext,
     JobProcess,
-    JobRequest,
     WorkerOptions,
     cli,
     llm,
 )
-from livekit.agents.voice_assistant import VoiceAssistant
+from livekit.agents.pipeline import VoicePipelineAgent
 from livekit.plugins import openai, deepgram, silero
 
 
 load_dotenv(dotenv_path=".env.local")
-sandbox = os.getenv("LIVEKIT_SANDBOX_ID")
-logger = logging.getLogger("voice-assistant")
+logger = logging.getLogger("voice-agent")
 
 
 def prewarm(proc: JobProcess):
@@ -30,10 +27,7 @@ async def entrypoint(ctx: JobContext):
         text=(
             "You are a voice assistant created by LiveKit. Your interface with users will be voice. "
             "You should use short and concise responses, and avoiding usage of unpronouncable punctuation. "
-            "You were created as a demo to showcase the capabilities of LiveKit's agents framework, "
-            "as well as the ease of development of realtime AI prototypes. You are currently running in a "
-            "LiveKit Sandbox, which is an environment that allows developers to instantly deploy prototypes "
-            "of their realtime AI applications to share with others."
+            "You were created as a demo to showcase the capabilities of LiveKit's agents framework."
         ),
     )
 
@@ -44,11 +38,11 @@ async def entrypoint(ctx: JobContext):
     participant = await ctx.wait_for_participant()
     logger.info(f"starting voice assistant for participant {participant.identity}")
 
-    # This project is configured to use OpenAI STT, LLM, and TTS plugins
+    # This project is configured to use Deepgram STT, OpenAI LLM and TTS plugins
     # Other great providers exist like Cartesia and ElevenLabs
     # Learn more and pick the best one for your app:
     # https://docs.livekit.io/agents/plugins
-    assistant = VoiceAssistant(
+    assistant = VoicePipelineAgent(
         vad=ctx.proc.userdata["vad"],
         stt=deepgram.STT(),
         llm=openai.LLM(model="gpt-4o-mini"),
@@ -62,23 +56,10 @@ async def entrypoint(ctx: JobContext):
     await assistant.say("Hey, how can I help you today?", allow_interruptions=True)
 
 
-# The agent can be configured to only accept jobs from specific rooms
-async def request(ctx: JobRequest):
-    # In this case, when running in a sandbox we only want to join rooms
-    # associated with that sandbox.
-    if sandbox is not None:
-        hash = sandbox.split("-")[-1]
-        if ctx.room.name.startswith(f"sbx-{hash}"):
-            return await ctx.accept()
-        return await ctx.reject()
-    return await ctx.accept()
-
-
 if __name__ == "__main__":
     cli.run_app(
         WorkerOptions(
             entrypoint_fnc=entrypoint,
             prewarm_fnc=prewarm,
-            request_fnc=request,
         ),
     )
