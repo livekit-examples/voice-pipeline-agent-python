@@ -42,7 +42,7 @@ async def entrypoint(ctx: JobContext):
     # Other great providers exist like Cartesia and ElevenLabs
     # Learn more and pick the best one for your app:
     # https://docs.livekit.io/agents/plugins
-    assistant = VoicePipelineAgent(
+    agent = VoicePipelineAgent(
         vad=ctx.proc.userdata["vad"],
         stt=deepgram.STT(),
         llm=openai.LLM(model="gpt-4o-mini"),
@@ -50,10 +50,10 @@ async def entrypoint(ctx: JobContext):
         chat_ctx=initial_ctx,
     )
 
-    assistant.start(ctx.room, participant)
+    agent.start(ctx.room, participant)
 
     # The agent should be polite and greet the user when it joins :)
-    await assistant.say("Hey, how can I help you today?", allow_interruptions=True)
+    await agent.say("Hey, how can I help you today?", allow_interruptions=True)
 
 
 if __name__ == "__main__":
