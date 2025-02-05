@@ -21,12 +21,26 @@ A basic example of a voice agent using LiveKit and Python.
 Clone the repository and install dependencies to a virtual environment:
 
 ```console
+# Linux/macOS
 cd voice-pipeline-agent-python
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python3 agent.py download-files
 ```
+
+<details>
+  <summary>Windows instructions (click to expand)</summary>
+  
+```cmd
+:: Windows (CMD/PowerShell)
+cd voice-pipeline-agent-python
+python3 -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+</details>
+
 
 Set up the environment by copying `.env.example` to `.env.local` and filling in the required values:
 
