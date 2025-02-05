@@ -14,6 +14,7 @@ tasks:
       - platforms: [windows]
         cmd: echo -e "\tpowershell venv/Scripts/Activate.ps1\r"
       - echo -e "\tpip install -r requirements.txt\r"
+      - echo -e "\tpython3 agent.py download-files\r"
       - echo -e "\tpython3 agent.py dev\r\n"
 
   install:

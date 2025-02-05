@@ -25,6 +25,7 @@ cd voice-pipeline-agent-python
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+python3 agent.py download-files
 ```
 
 Set up the environment by copying `.env.example` to `.env.local` and filling in the required values:
@@ -33,6 +34,7 @@ Set up the environment by copying `.env.example` to `.env.local` and filling in 
 - `LIVEKIT_API_KEY`
 - `LIVEKIT_API_SECRET`
 - `OPENAI_API_KEY`
+- `CARTESIA_API_KEY`
 - `DEEPGRAM_API_KEY`
 
 You can also do this automatically using the LiveKit CLI:
