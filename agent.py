@@ -11,7 +11,14 @@ from livekit.agents import (
     metrics,
 )
 from livekit.agents.pipeline import VoicePipelineAgent
-from livekit.plugins import cartesia, openai, deepgram, silero, turn_detector
+from livekit.plugins import (
+    cartesia,
+    openai,
+    deepgram,
+    noise_cancellation,
+    silero,
+    turn_detector,
+)
 
 
 load_dotenv(dotenv_path=".env.local")
@@ -48,11 +55,15 @@ async def entrypoint(ctx: JobContext):
         stt=deepgram.STT(),
         llm=openai.LLM(model="gpt-4o-mini"),
         tts=cartesia.TTS(),
+        # use LiveKit's transformer-based turn detector
         turn_detector=turn_detector.EOUModel(),
         # minimum delay for endpointing, used when turn detector believes the user is done with their turn
         min_endpointing_delay=0.5,
         # maximum delay for endpointing, used when turn detector does not believe the user is done with their turn
         max_endpointing_delay=5.0,
+        # enable background voice & noise cancellation, powered by Krisp
+        # included at no additional cost with LiveKit Cloud
+        noise_cancellation=noise_cancellation.BVC(),
         chat_ctx=initial_ctx,
     )
 
