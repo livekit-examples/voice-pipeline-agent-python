@@ -39,8 +39,8 @@ python3 -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 ```
-</details>
 
+</details>
 
 Set up the environment by copying `.env.example` to `.env.local` and filling in the required values:
 
@@ -60,7 +60,13 @@ lk app env
 Run the agent:
 
 ```console
-python3 agent.py dev
+python3 agent.py console
 ```
 
-This agent requires a frontend application to communicate with. You can use one of our example frontends in [livekit-examples](https://github.com/livekit-examples/), create your own following one of our [client quickstarts](https://docs.livekit.io/realtime/quickstarts/), or test instantly against one of our hosted [Sandbox](https://cloud.livekit.io/projects/p_/sandbox) frontends.
+This agent can use a frontend application to communicate with. You can use one of our example frontends in [livekit-examples](https://github.com/livekit-examples/), create your own following one of our [client quickstarts](https://docs.livekit.io/realtime/quickstarts/), or test instantly against one of our hosted [Sandbox](https://cloud.livekit.io/projects/p_/sandbox) frontends.
+
+Run the agent with the following command when using a frontend application.
+
+```console
+python3 agent.py dev
+```
