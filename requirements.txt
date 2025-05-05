@@ -1,10 +1,10 @@
-livekit-agents>=1.0.0,<2.0.0
-livekit-plugins-openai>=1.0.0,<2.0.0
-livekit-plugins-cartesia>=1.0.0,<2.0.0
-livekit-plugins-deepgram>=1.0.0,<2.0.0
-livekit-plugins-silero>=1.0.0,<2.0.0
+livekit-agents~=1.0
+livekit-plugins-openai~=1.0
+livekit-plugins-cartesia~=1.0
+livekit-plugins-deepgram~=1.0
+livekit-plugins-silero~=1.0
 # optional, only when using LiveKit's turn detection model
-livekit-plugins-turn-detector>=1.0.0,<2.0.0
+livekit-plugins-turn-detector~=1.0
 # optional, only if background voice & noise cancellation is needed
 livekit-plugins-noise-cancellation>=0.2.0,<1.0.0
 python-dotenv~=1.0
