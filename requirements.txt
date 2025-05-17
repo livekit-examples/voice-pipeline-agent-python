@@ -1,7 +1,5 @@
 livekit-agents~=1.0
 livekit-plugins-openai~=1.0
-livekit-plugins-cartesia~=1.0
-livekit-plugins-deepgram~=1.0
 livekit-plugins-silero~=1.0
 # optional, only when using LiveKit's turn detection model
 livekit-plugins-turn-detector~=1.0
