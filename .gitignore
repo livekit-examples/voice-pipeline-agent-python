@@ -1,4 +1,4 @@
-.env.local
+.env*
 .venv/
 venv/
 .DS_Store
